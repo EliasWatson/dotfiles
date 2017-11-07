@@ -28,9 +28,9 @@ color jellybeans
 set guifont=Monaco:h9
 
 " Layout
-TagbarOpen
-NERDTree
-wincmd l
+autocmd VimEnter * TagbarOpen
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd l
 
 " GVIM GUI Options
 set go-=m
