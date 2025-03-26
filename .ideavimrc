@@ -1,0 +1,122 @@
+set which-key
+set notimeout
+let g:WhichKey_ShowVimActions = "true"
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'justinmk/vim-sneak'
+Plug 'machakann/vim-highlightedyank'
+" packadd matchit
+" set quickscope
+
+" Loosely based on https://github.com/fdietze/dotfiles/blob/master/.ideavimrc
+set hlsearch                      " highlight search occurrences
+set incsearch                     " show search results while typing
+set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
+
+" set <leader> to <space>
+let mapleader = " "
+
+" don't lose selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" --- Tab navigation ---
+nmap <A-h> :action PreviousTab<CR>
+nmap <A-l> :action NextTab<CR>
+
+" --- Goto shortcuts ---
+nmap gr :action ShowUsages<CR>
+let g:WhichKeyDesc_ShowUsages = "gr Show Usages"
+
+nmap gi :action GotoImplementation<CR>
+let g:WhichKeyDesc_GotoImplementation = "gi Goto Implementation"
+
+nmap <leader>n :action GotoNextError<CR>
+let g:WhichKeyDesc_GotoNextError = "<leader>n Goto Next Error"
+
+" --- Refactoring shortcuts ---
+let g:WhichKeyDesc_Refactor = "<leader>r Refactor"
+
+nmap <leader>ri :action Inline<CR>
+let g:WhichKeyDesc_Inline = "<leader>ri Inline"
+
+nmap <leader>rr :action RenameElement<CR>
+let g:WhichKeyDesc_RenameElement = "<leader>rr Rename Element"
+
+nmap <leader>rev :action IntroduceVariable<CR>
+let g:WhichKeyDesc_IntroduceVariable = "<leader>rev Introduce Variable"
+
+vmap <leader>rev :action IntroduceVariable<CR>
+let g:WhichKeyDesc_IntroduceVariable = "<leader>rev Introduce Variable"
+
+nmap <leader>rem :action ExtractMethod<CR>
+let g:WhichKeyDesc_ExtractMethod = "<leader>rem Extract Method"
+
+vmap <leader>rem :action ExtractMethod<CR>
+let g:WhichKeyDesc_ExtractMethod = "<leader>rem Extract Method"
+
+nmap <leader>rm :action Move<CR>
+let g:WhichKeyDesc_Move = "<leader>rm Move"
+
+nmap <leader>ro :action OptimizeImports<CR>
+let g:WhichKeyDesc_OptimizeImports = "<leader>ro Optimize Imports"
+
+nmap <leader>rG :action Generate<CR>
+let g:WhichKeyDesc_Generate = "<leader>rG Generate"
+
+" --- Misc Shortcuts ---
+" Clear search highlights
+nnoremap <leader>/ :nohls<return><esc>
+let g:WhichKeyDesc_ClearSearchHighlights = "<leader>/ Clear Search Highlights"
+
+" --- Add descriptions to existing mappings ---
+" -- g Prefix --
+let g:WhichKeyDesc_VimSearchWordBackwardAction = "g# Search Word Backward"
+let g:WhichKeyDesc_VimMotionLastScreenColumnAction = "g$ Move to Last Screen Column"
+let g:WhichKeyDesc_VimChangeLastGlobalSearchReplaceAction = "g& Change Last Global Search Replace"
+let g:WhichKeyDesc_VimMotionGotoMarkLineNoSaveJumpAction = "g' Move to Mark Line"
+let g:WhichKeyDesc_VimMotionSentencePreviousEndAction = "g( Move to Previous Sentence End"
+let g:WhichKeyDesc_VimMotionSentenceNextEndAction = "g) Move to Next Sentence End"
+let g:WhichKeyDesc_VimSearchWordForwardAction = "g* Search Word Forward"
+let g:WhichKeyDesc_VimMotionFirstScreenColumnAction = "g0 Move to First Screen Column"
+let g:WhichKeyDesc_VimFileGetHexAction = "g8 Get Hex"
+let g:WhichKeyDesc_VimFileGetLocationInfoAction = "g<^-g> Get Location Info"
+let g:WhichKeyDesc_VimSelectEnableBlockModeAction = "g<^-h> Enable Block Mode"
+let g:WhichKeyDesc_VimOperatorAction = "g@ Operator"
+let g:WhichKeyDesc_VimGotoDeclarationAction = "gD Goto Declaration"
+let g:WhichKeyDesc_VimMotionBigWordEndLeftAction = "gE Move to Big Word End Left"
+let g:WhichKeyDesc_VimSelectEnableLineModeAction = "gH Enable Line Mode"
+let g:WhichKeyDesc_VimInsertLineStartAction = "gI Insert Line Start"
+let g:WhichKeyDesc_VimDeleteJoinLinesAction = "gJ Delete Join Lines"
+let g:WhichKeyDesc_VimVisualSelectPreviousSearch = "gN Visual Select Previous Search"
+let g:WhichKeyDesc_VimPutTextBeforeCursorActionMoveCursor = "gP Put Text Before Cursor"
+let g:WhichKeyDesc_VimPreviousTabAction = "gT Previous Tab"
+let g:WhichKeyDesc_VimChangeCaseUpperMotionAction = "gU Change Case Upper"
+let g:WhichKeyDesc_VimMotionFirstScreenNonSpaceAction = "g^ Move to First Screen Non Space"
+let g:WhichKeyDesc_VimMotionLastNonSpaceAction = "g_ Move to Last Non Space"
+let g:WhichKeyDesc_VimMotionGotoMarkNoSaveJumpAction = "g` Move to Mark"
+let g:WhichKeyDesc_VimFileGetAsciiAction = "ga Get Ascii"
+let g:WhichKeyDesc_VimGotoDeclarationAction = "gd Goto Declaration"
+let g:WhichKeyDesc_VimMotionWordEndLeftAction = "ge Move to Word End Left"
+let g:WhichKeyDesc_VimMotionGotoLineFirstAction = "gg Move to Line First"
+let g:WhichKeyDesc_VimSelectEnableCharacterModeAction = "gh Enable Character Mode"
+let g:WhichKeyDesc_GotoImplementation = "gi Goto Implementation"
+let g:WhichKeyDesc_VimMotionDownNotLineWiseAction = "gj Move Down"
+let g:WhichKeyDesc_VimMotionUpNotLineWiseAction = "gk Move Up"
+let g:WhichKeyDesc_VimMotionMiddleColumnAction = "gm Move to Middle Column"
+let g:WhichKeyDesc_VimVisualSelectNextSearch = "gn Visual Select Next Search"
+let g:WhichKeyDesc_VimMotionNthCharacterAction = "go Move to Nth Character"
+let g:WhichKeyDesc_VimPutTextAfterCursorActionMoveCursor = "gp Put Text After Cursor"
+let g:WhichKeyDesc_VimReformatCodeMotionAction = "gq Reformat Code"
+let g:WhichKeyDesc_ShowUsages = "gr Show Usages"
+let g:WhichKeyDesc_VimNextTabAction = "gt Next Tab"
+let g:WhichKeyDesc_VimChangeCaseLowerMotionAction = "gu Change Case Lower"
+let g:WhichKeyDesc_VimVisualSelectPreviousAction = "gv Visual Select Previous"
+let g:WhichKeyDesc_VimChangeCaseToggleMotionAction = "g~ Change Case Toggle"
+let g:WhichKeyDesc_VimMotionUpNotLineWiseAction = "g↑ Move Up"
+let g:WhichKeyDesc_VimMotionDownNotLineWiseAction = "g↓ Move Down"
+let g:WhichKeyDesc_VimMotionFirstScreenColumnAction = "g↖ Move to First Screen Column"
+let g:WhichKeyDesc_VimMotionLastScreenColumnAction = "g↘ Move to Last Screen Column"
