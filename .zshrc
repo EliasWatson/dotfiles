@@ -132,6 +132,7 @@ eval "$(zoxide init zsh)"
 alias ls=eza
 alias pbtee='pbcopy | pbpaste'
 alias uuid='node -e "console.log(crypto.randomUUID())"'
+alias e='emacsclient --create-frame --alternate-editor=""'
 
 # Unalias 'gst'
 unalias gst
