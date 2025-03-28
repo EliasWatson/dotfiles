@@ -78,3 +78,19 @@
 ;; Swap Super and Meta to prevent conflicts with Aerospace (tiling window manager)
 (setq mac-option-modifier 'super  ; Make Option key act as Super
       mac-command-modifier 'meta) ; Make Command key act as Meta
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+;; (use-package! chatgpt-shell
+;;   :config (setq chatgpt-shell-openrouter-key
+;;                 (auth-source-pick-first-password :host "openrouter.ai")))
+;; (setq chatgpt-shell-openrouter-key (auth-source-pick-first-password :host "openrouter.ai"))
+
+(use-package! lsp-tailwindcss :after lsp-mode)
