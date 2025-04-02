@@ -133,6 +133,7 @@ alias ls=eza
 alias pbtee='pbcopy | pbpaste'
 alias uuid='node -e "console.log(crypto.randomUUID())"'
 alias e='emacsclient --create-frame --alternate-editor=""'
+alias nx='pnpm nx'
 
 # Unalias 'gst'
 unalias gst
@@ -152,9 +153,9 @@ brew-which () {
 alias brew-where=brew-which
 
 # Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
+#if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+#  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+#fi
 # End Nix
 
 export NVM_DIR="$HOME/.nvm"

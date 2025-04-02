@@ -79,6 +79,11 @@
 (setq mac-option-modifier 'super  ; Make Option key act as Super
       mac-command-modifier 'meta) ; Make Command key act as Meta
 
+;; Switch C-<backspace> and s-<backspace>
+(with-eval-after-load 'evil
+  (define-key evil-insert-state-map (kbd "M-<backspace>") 'kill-whole-line)  ; Cmd+Backspace deletes line
+  (define-key evil-insert-state-map (kbd "s-<backspace>") 'backward-kill-word)) ; Option+Backspace deletes word
+
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
@@ -93,4 +98,11 @@
 ;;                 (auth-source-pick-first-password :host "openrouter.ai")))
 ;; (setq chatgpt-shell-openrouter-key (auth-source-pick-first-password :host "openrouter.ai"))
 
-(use-package! lsp-tailwindcss :after lsp-mode)
+;; (use-package! lsp-tailwindcss :after lsp-mode)
+
+(after! org
+  (add-to-list 'org-capture-templates
+               '("i" "Idea" entry
+                 (file+headline "~/org/ideas.org" "Ideas")
+                 "* IDEA %?\n  %U\n"
+                 :empty-lines 1)))
