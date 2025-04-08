@@ -85,20 +85,20 @@
   (define-key evil-insert-state-map (kbd "s-<backspace>") 'backward-kill-word)) ; Option+Backspace deletes word
 
 ;; accept completion from copilot and fallback to company
-;(use-package! copilot
-;  :hook (prog-mode . copilot-mode)
-;  :bind (:map copilot-completion-map
-;              ("<tab>" . 'copilot-accept-completion)
-;              ("TAB" . 'copilot-accept-completion)
-;              ("C-TAB" . 'copilot-accept-completion-by-word)
-;              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
 ;; (use-package! chatgpt-shell
 ;;   :config (setq chatgpt-shell-openrouter-key
 ;;                 (auth-source-pick-first-password :host "openrouter.ai")))
 ;; (setq chatgpt-shell-openrouter-key (auth-source-pick-first-password :host "openrouter.ai"))
 
-;; (use-package! lsp-tailwindcss :after lsp-mode)
+(use-package! lsp-tailwindcss :after lsp-mode)
 
 (after! org
   (add-to-list 'org-capture-templates
@@ -106,3 +106,5 @@
                  (file+headline "~/org/ideas.org" "Ideas")
                  "* IDEA %?\n  %U\n"
                  :empty-lines 1)))
+
+(setq org-log-done 'time)

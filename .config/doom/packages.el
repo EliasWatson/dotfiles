@@ -48,11 +48,11 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-;; (package! lsp-tailwindcss
-;;   :recipe (:host github :repo "merrickluo/lsp-tailwindcss")
+(package! lsp-tailwindcss
+  :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 
-;; (package! copilot
-;;  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 
 ;; (package! chatgpt-shell
 ;;   :recipe (:host github :repo "xenodium/chatgpt-shell" :files ("*.el")))
