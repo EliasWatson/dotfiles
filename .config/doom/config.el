@@ -29,10 +29,12 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -84,6 +86,13 @@
   (define-key evil-insert-state-map (kbd "M-<backspace>") 'kill-whole-line)  ; Cmd+Backspace deletes line
   (define-key evil-insert-state-map (kbd "s-<backspace>") 'backward-kill-word)) ; Option+Backspace deletes word
 
+(setq display-time-load-average nil)
+(display-time)
+
+(use-package! doom-modeline
+  :config
+  (setq doom-modeline-height 25))
+
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
@@ -108,3 +117,8 @@
                  :empty-lines 1)))
 
 (setq org-log-done 'time)
+
+(after! lsp-mode
+  (add-hook 'typescript-mode-hook
+            (lambda ()
+              (setq-local typescript-indent-level 2))))
