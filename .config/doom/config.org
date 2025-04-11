@@ -99,6 +99,16 @@ Update backspace modifiers to match MacOS.
   '(org-level-3 :inherit outline-3 :height 1.1)
   '(org-level-4 :inherit outline-4 :height 1.05))
 #+end_src
+* Hyperbole
+** Package
+#+BEGIN_SRC elisp :tangle packages.el
+(package! hyperbole)
+#+end_src
+** Config
+#+begin_src elisp
+(use-package! hyperbole
+  :config (hyperbole-mode 1))
+#+end_src
 * GitHub Copilot
 *** Package
 #+BEGIN_SRC elisp :tangle packages.el
