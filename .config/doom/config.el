@@ -3,6 +3,7 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(add-to-list 'default-frame-alist '(undecorated . t))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -29,7 +30,8 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
-(add-to-list 'default-frame-alist '(undecorated . t))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 18))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -38,7 +40,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -92,6 +94,27 @@
 (use-package! doom-modeline
   :config
   (setq doom-modeline-height 25))
+
+;; (use-package! mixed-pitch
+;;   :hook (org-mode . mixed-pitch-mode)
+;;   :config
+;;   (setq mixed-pitch-face-override-list '(org-code org-block org-table org-verbatim org-special-keyword org-meta-line org-checkbox)))
+;; Adjust the size of Org headings
+
+(custom-set-faces!
+  '(org-level-1 :inherit outline-1 :height 1.3) ; 4px above, 4px below
+  '(org-level-2 :inherit outline-2 :height 1.2) ; 3px above, 3px below
+  '(org-level-3 :inherit outline-3 :height 1.1) ; 2px above, 2px below
+  '(org-level-4 :inherit outline-4 :height 1.05)) ; 1px above, 1px below
+
+(use-package! org-modern
+  :after org
+  :hook (org-mode . org-modern-mode)
+  :config
+  (setq org-modern-star '("◉" "○" "✸" "✿" "◇")) ; Use characters your font supports
+  (global-org-modern-mode))
+
+(setq org-startup-indented t)
 
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
