@@ -95,12 +95,7 @@
   :config
   (setq doom-modeline-height 25))
 
-;; (use-package! mixed-pitch
-;;   :hook (org-mode . mixed-pitch-mode)
-;;   :config
-;;   (setq mixed-pitch-face-override-list '(org-code org-block org-table org-verbatim org-special-keyword org-meta-line org-checkbox)))
 ;; Adjust the size of Org headings
-
 (custom-set-faces!
   '(org-level-1 :inherit outline-1 :height 1.3) ; 4px above, 4px below
   '(org-level-2 :inherit outline-2 :height 1.2) ; 3px above, 3px below
@@ -125,11 +120,6 @@
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
-;; (use-package! chatgpt-shell
-;;   :config (setq chatgpt-shell-openrouter-key
-;;                 (auth-source-pick-first-password :host "openrouter.ai")))
-;; (setq chatgpt-shell-openrouter-key (auth-source-pick-first-password :host "openrouter.ai"))
-
 (use-package! lsp-tailwindcss :after lsp-mode)
 
 (after! org
@@ -145,3 +135,24 @@
   (add-hook 'typescript-mode-hook
             (lambda ()
               (setq-local typescript-indent-level 2))))
+
+(use-package! visual-fill-column
+  :config
+  ;; Center text for all buffers
+  (setq-default visual-fill-column-center-text t)
+  ;; Ensure sensible behavior with window splits
+  (setq visual-fill-column-enable-sensible-window-split t)
+  ;; Function to set width based on major mode
+  (defun my-set-visual-fill-column-width ()
+    (cond
+     ((derived-mode-p 'org-mode)
+      (setq-local visual-fill-column-width 80))  ; Width 80 for Org mode
+     ((derived-mode-p 'prog-mode)
+      (setq-local visual-fill-column-width 120)) ; Width 120 for code files
+     (t
+      (setq-local visual-fill-column-width 80)))) ; Default width for other files
+  ;; Enable visual-fill-column-mode and set width for all file buffers
+  :hook
+  (find-file-hook . (lambda ()
+                      (visual-fill-column-mode 1)
+                      (my-set-visual-fill-column-width))))

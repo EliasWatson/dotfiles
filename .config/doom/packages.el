@@ -59,3 +59,5 @@
 
 ;; (package! good-scroll
 ;;   :recipe (:host github :repo "io12/good-scroll.el" :files ("*.el"))
+
+(package! visual-fill-column)
