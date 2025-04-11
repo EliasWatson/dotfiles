@@ -69,6 +69,7 @@ Update backspace modifiers to match MacOS.
 #+begin_src elisp
 (vi-tilde-fringe-mode -1)
 #+end_src
+*** TODO This doesn't work
 * Org Mode
 #+begin_src elisp
 (setq org-directory "~/org/")
