@@ -50,7 +50,8 @@ Update backspace modifiers to match MacOS.
 (use-package! visual-fill-column
   :config
   (setq-default visual-fill-column-center-text t)
-  (setq visual-fill-column-enable-sensible-window-split t)
+  (setq-default visual-fill-column-enable-sensible-window-split t)
+  (setq-default visual-fill-column-fringes-outside-margins nil)
   (defun my-set-visual-fill-column-width ()
     (cond
      ;; ((derived-mode-p 'org-mode)
@@ -64,6 +65,10 @@ Update backspace modifiers to match MacOS.
                       (visual-fill-column-mode 1)
                       (my-set-visual-fill-column-width))))
 #+END_SRC
+** Disable Tilde Fringes
+#+begin_src elisp
+(vi-tilde-fringe-mode -1)
+#+end_src
 * Org Mode
 #+begin_src elisp
 (setq org-directory "~/org/")
