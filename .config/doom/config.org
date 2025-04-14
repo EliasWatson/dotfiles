@@ -120,12 +120,12 @@ Update backspace modifiers to match MacOS.
   :config (hyperbole-mode 1))
 #+end_src
 * GitHub Copilot
-*** Package
+** Package
 #+BEGIN_SRC elisp :tangle packages.el
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 #+END_SRC
-*** Config
+** Config
 #+begin_src elisp
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
@@ -134,6 +134,19 @@ Update backspace modifiers to match MacOS.
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
+#+end_src
+* Aidermacs
+** Package
+#+BEGIN_SRC elisp :tangle packages.el
+(package! aidermacs)
+#+end_src
+** Config
+#+begin_src elisp
+(use-package! aidermacs
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :custom
+  ; See the Configuration section below
+  (aidermacs-use-architect-mode t))
 #+end_src
 * TypeScript
 Force indent level to =2=.
