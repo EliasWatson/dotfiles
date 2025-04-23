@@ -74,6 +74,29 @@ Update backspace modifiers to match MacOS.
 #+begin_src elisp
 (setq org-directory "~/org/")
 (setq org-log-done 'time)
+
+(after! org
+  (defun my-org-fold-done-tasks-on-load ()
+    "Iterate through Org entries and fold subtrees marked DONE."
+    (interactive)
+    ;; save-excursion preserves the cursor position and view
+    (save-excursion
+      (save-restriction ; Operate on the whole buffer temporarily
+        (widen)
+        ;; org-map-entries applies a function to entries matching criteria
+        ;; Here, we apply it to the whole file ('file scope)
+        (org-map-entries
+         (lambda ()
+           ;; Check if the current entry's TODO state is exactly "DONE"
+           (when (string= (org-get-todo-state) "DONE")
+             ;; org-hide-subtree folds the current entry's subtree
+             (outline-hide-subtree)))
+         nil ; No specific tag/property match needed, we check state inside the lambda
+         'file)))) ; Apply to the entire file
+
+  ;; Add the function to org-mode-hook
+  ;; This ensures it runs every time an org file is opened
+  (add-hook 'org-mode-hook #'my-org-fold-done-tasks-on-load))
 #+end_src
 
 ** Capture
@@ -92,7 +115,8 @@ Update backspace modifiers to match MacOS.
   :after org
   :hook (org-mode . org-modern-mode)
   :config
-  (setq org-modern-star '("◉" "○" "✸" "✿" "◇"))
+  (setq org-modern-star 'replace)
+  (setq org-modern-replace-stars "◉○◈◇✸✿")
   (global-org-modern-mode))
 
 (setq org-startup-indented t)
